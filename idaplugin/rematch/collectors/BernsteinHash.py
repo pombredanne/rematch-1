@@ -3,7 +3,7 @@ from .. import exceptions
 import idaapi
 
 
-class BernsteinVec(Vector):
+class BernsteinHashVec(Vector):
 
   # TODO refactor 
   # We have many hash functions which do the same

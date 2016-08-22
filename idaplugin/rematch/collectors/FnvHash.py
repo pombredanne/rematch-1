@@ -4,15 +4,13 @@ import idaapi
 
 # we only do 64b-len hashes, not 32b
 # TODO XXX create a native function to do this hash
-class FnvHash:
+class FnvHashVector(Vector):
 
   FNV_P = 0x100000001b3
   FNV_OFF_BASE = 0xcbf29ce484222325
   BITNESS = 2**64
-
-class FnvHashVector(Vector):
-
   # TODO XXX multiplex.
+
   # Move from Byte to Dword.
   #  For every basic block 
   # calculate FNV Hash.
