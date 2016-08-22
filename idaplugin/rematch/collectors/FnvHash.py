@@ -9,15 +9,25 @@ class FnvHashVector(Vector):
   FNV_P = 0x100000001b3
   FNV_OFF_BASE = 0xcbf29ce484222325
   BITNESS = 2**64
-  # TODO XXX multiplex.
 
+  def __init__(self):
+    self.type = 'FnvHash'
+    self.type_version = 0
+    self.bb_lst = None
+
+  def data(self):
+    if self.bb_lst == None:
+      raise exceptions.NoFunctionException()
+    return self.bb_lst
+
+  # TODO XXX multiplex.
   # Move from Byte to Dword.
   #  For every basic block 
   # calculate FNV Hash.
   # then add it to a global lst
   def collect_insn(self,fn):
     lst = []
-    fn_lst = []
+    self.bb_lst = []
     for basicblock in fn:
       for insn in basicblock.succs():
         bb_start = insn.startEA
@@ -29,9 +39,9 @@ class FnvHashVector(Vector):
             lst.append(Byte(bb_start + indx))
             indx +=1
           bb_start = NextHead(bb_start)
-        fn_lst.append(digest(lst))
+        self.bb_lst.append(digest(lst))
         lst = [] 
-    return fn_lst
+    return self.bb_lst
 
   def digest(self,bytearr): 
     h = FnvHash.FNV_OFF_BASE

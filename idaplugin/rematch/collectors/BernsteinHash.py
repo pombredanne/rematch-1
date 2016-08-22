@@ -5,12 +5,18 @@ import idaapi
 
 class BernsteinHashVec(Vector):
 
+
+  def  __init__(self):
+    self.bb_lst = None
+    self.type = 'BernsteinHash'
+    self.type_version = 0
+
   # TODO refactor 
   # We have many hash functions which do the same
   # just create a class to iterate over it and implement digest
   def collect_insn(self,fn):
    lst = []
-   fn_lst = []
+   self.bb_lst = []
    for bb in fn:
     for insn in bb.succs():
       start = bb.startEA
@@ -22,9 +28,15 @@ class BernsteinHashVec(Vector):
           lst.append(Byte(start +  indx))
           indx +=1
         start = NextHead(start)
-      fn_lst.append(digest(lst))
+      self.bb_lst.append(digest(lst))
       lst = []
-    return fn_lst
+    return self.bb_lst
+  
+  @property
+  def data(self):
+    if self.bb_lst == None:
+      raise exception.NoFunctionException()
+    return self.bb_lst
 
   # this is the "modified better" version 
   # of the infamous bernstein hash 
