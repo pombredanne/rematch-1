@@ -34,5 +34,7 @@ class NotFoundException(QueryException):
   message = ("Asset not found. This could be either a plugin error or a "
              "server error.")
 
+
 class NoFunctionException(RematchException):
-  message = ("No function boundaries were found, perhaps try to create a function first ?")
+  message = ("No function boundaries were found, perhaps try to create a "
+             "function first ?")

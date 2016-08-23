@@ -3,5 +3,7 @@ from .dummy import DummyVector
 from .assembly_hash import AssemblyHashVector
 from .mnemonic_hash import MnemonicHashVector
 from .mnemonic_hist import MnemonicHistVector
+from .hashvec import HashVector
 
-__all__ = [Vector, DummyVector, AssemblyHashVector, MnemonicHashVector, MnemonicHistVector]
+__all__ = [Vector, HashVector, DummyVector, AssemblyHashVector,
+           MnemonicHashVector, MnemonicHistVector]
