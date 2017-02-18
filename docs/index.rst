@@ -55,6 +55,7 @@ Contribute and Get Support
 
 - Source Code: https://github.com/nirizr/rematch
 - Issue Tracker: https://github.com/nirizr/rematch/issues
+- Gitter Chat: https://gitter.im/rematch/rematch
 
 License
 -------
