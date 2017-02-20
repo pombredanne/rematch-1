@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Rematch
-========
+=======
 
 Rematch, a simple binary diffing utility that just works.
 
@@ -31,6 +31,7 @@ synchronization between multiple reverse engineers working on the same file.
    installation
    usage
    engines
+   glossary
 
 Goal of Rematch
 ---------------
