@@ -17,8 +17,9 @@ Glossary
   
    Vector
       Raw data used to describe an :term:`Entity` in a way that facilitates and
-      enables matching.
+      enables matching. Those are also occasionally called features in data-
+      science and machine learning circles.
  
    Matcher
-   .. todo::
-      Fill this up
+      Matchers implement the logic of matching :term:`Entities <Entity>`
+      together using thier :term:`Vectors <Vector>`.

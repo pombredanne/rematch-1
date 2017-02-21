@@ -2,7 +2,7 @@ Installation
 ============
 
 Installing the Rematch Server
-------
+-----------------------------
 
 Installing a rematch server is only required once for a group of rematch users.
 Once an admin user is created, additional users can be managend through the
@@ -13,4 +13,4 @@ admin console.
   permission to access said data. See Privacy section for more details.
 
 Installing the Rematch IDA Plugin
-----------
+---------------------------------
