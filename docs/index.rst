@@ -56,6 +56,8 @@ Contribute and Get Support
 
 - Source Code: https://github.com/nirizr/rematch
 - Issue Tracker: https://github.com/nirizr/rematch/issues
+- IRC channel: `ircs://freenode/#rematch <ircs://freenode/#rematch>`_ (or
+  `insecure <irc:freenode/#rematch>`_)
 - Gitter Chat: https://gitter.im/rematch/rematch
 
 License
