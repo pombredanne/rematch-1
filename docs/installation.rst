@@ -1,6 +1,11 @@
 Installation
 ============
 
+The rematch project is composed of two parts: a server and an IDA plugin client.
+
+While installing the plugin is exteremly easy, installing the server tends to
+be a little more difficult. Luckily, it's only done once per organisation.
+
 Installing the Rematch Server
 -----------------------------
 
