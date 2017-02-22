@@ -2,6 +2,13 @@ Glossary
 ========
 
 .. glossary::
+
+   Annotation
+     A piece of information describing an :term:`Entity` in more detail, often
+     created by the user while reverse engineering as part of the reverse
+     engineering process. Annotations help the reverse engineer and therefore
+     there's an advantage in applying annotations to matched :term:`Entities
+     <Entity>`.
  
    Entity
      When used throughtout these docs, an Entity generally means a matchable
