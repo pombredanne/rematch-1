@@ -28,6 +28,7 @@ synchronization between multiple reverse engineers working on the same file.
    :maxdepth: 2
    :caption: Contents:
 
+   architecture
    installation
    usage
    engines
