@@ -27,10 +27,21 @@ IDA Plugin
 Login
 +++++
 
-Before working on a project using
+Before uploading a file, starting a matching task or creating a project, a user
+must log in. If you do not have a user account on a rematch server, you'll need
+to contact the nearest rematch server admin, or set up your own rematch server.
+
+By clicking the "Login" command in the rematch toolbar or menu, a prompt dialog
+box will appear. You'll need to specify the server, username and password
+you'll work with, and click Login. Upon a successful login you'll be able to
+create projects, add files, request matches, etc.
+
+.. todo: Add an image, two or a gif clip of a login.
 
 File Creation and Binding
 +++++++++++++++++++++++++
+
+
 
 Matching and Data Upload
 ++++++++++++++++++++++++
