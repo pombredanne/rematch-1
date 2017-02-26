@@ -53,10 +53,12 @@ class MatchAction(base.BoundFileAction):
 
   def cancel_delayed(self):
     for delayed in self.delayed_queries:
+      log('match_action').info("async task cancelled: %s", repr(delayed))
       delayed.cancel()
     self.delayed_queries = []
 
   def cancel(self):
+    log('match_action').info("match action cancelled")
     self.clean()
     self.cancel_delayed()
 
@@ -98,6 +100,8 @@ class MatchAction(base.BoundFileAction):
     return True
 
   def start_upload(self):
+    log('match_action').info("Data upload started")
+
     self.functions = set(idautils.Functions())
 
     self.pbar.setLabelText("Processing IDB... You may continue working,\nbut "
@@ -116,10 +120,13 @@ class MatchAction(base.BoundFileAction):
     if not self.functions:
       return
 
+    # pop a function, serialize and add to the ready set
     offset = self.functions.pop()
     func = instances.FunctionInstance(self.file_version_id, offset)
     self.instance_set.append(func.serialize())
 
+    # if ready set contains 100 or more functions, or if we just poped the last
+    # function clear and upload entire ready set to the server.
     if len(self.instance_set) >= 100 or not self.functions:
       q = network.QueryWorker("POST", "collab/instances/",
                               params=self.instance_set, json=True)
@@ -137,6 +144,8 @@ class MatchAction(base.BoundFileAction):
       self.pbar.setValue(new_value)
 
   def accept_upload(self):
+    log('match_action').info("Data upload completed successfully")
+
     self.clean()
     self.delayed_queries = []
 
@@ -195,6 +204,8 @@ class MatchAction(base.BoundFileAction):
       raise
 
   def accept_task(self):
+    log('match_action').info("Remote task completed successfully")
+
     self.clean()
     self.delayed_queries = []
 
@@ -209,6 +220,7 @@ class MatchAction(base.BoundFileAction):
 
     self.results = MatchResultDialog(self.task_id)
 
+    log('match_action').info("Result download started")
     locals_url = "collab/tasks/{}/locals/".format(self.task_id)
     q = network.QueryWorker("GET", locals_url, json=True, paginate=True,
                             params={'limit': 100})
@@ -261,6 +273,8 @@ class MatchAction(base.BoundFileAction):
       self.pbar.setValue(new_value)
 
   def accept_results(self):
+    log('match_action').info("Result download completed successfully")
+
     self.clean()
     self.delayed_queries = []
 

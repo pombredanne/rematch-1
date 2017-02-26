@@ -39,6 +39,9 @@ class QueryWorker(QtCore.QRunnable):
     self.running = True
     self.started = False
 
+    if self.paginate and not self.json:
+      raise Exception("paginate=True must accompany json=True")
+
     self.signals = WorkerSignals()
 
   def start(self, callback=None, exception_callback=None):
@@ -77,6 +80,9 @@ class QueryWorker(QtCore.QRunnable):
         # next page if specified. otherwise, break out of the loop
         if not self.paginate:
           break
+
+        if not isinstance(response, dict):
+          raise ValueError("Paginated response object is not a json dict")
 
         if 'next' not in response or not response['next']:
           break
