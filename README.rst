@@ -81,17 +81,17 @@ We have a skeleton for the match results dialog (which supports some basic
 python scripting! :D).
 
 .. |Build Status| image:: https://travis-ci.org/nirizr/rematch.svg?branch=master
-   alt: Build Status
-   target: https://travis-ci.org/nirizr/rematch
+   :alt: Build Status
+   :target: https://travis-ci.org/nirizr/rematch
 .. |Code Health| image:: https://landscape.io/github/nirizr/rematch/master/landscape.svg?style=flat
-   alt: Code Health
-   target: https://landscape.io/github/nirizr/rematch/master
+   :alt: Code Health
+   :target: https://landscape.io/github/nirizr/rematch/master
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/244945976779490d8f78706a9d4ab46b
-   alt: Codacy Badge
-   target: https://www.codacy.com/app/rematch/rematch?utm_campaign=Badge_Grade
+   :alt: Codacy Badge
+   :target: https://www.codacy.com/app/rematch/rematch?utm_campaign=Badge_Grade
 .. |idaplugin PyPI| image:: https://img.shields.io/pypi/v/rematch-idaplugin.svg
-   alt: rematch-idaplugin PyPI
-   target: https://pypi.python.org/pypi/rematch-idaplugin
+   :alt: rematch-idaplugin PyPI
+   :target: https://pypi.python.org/pypi/rematch-idaplugin
 .. |server PyPI| image:: https://img.shields.io/pypi/v/rematch-server.svg
-   alt: rematch-server PyPI
-   target: https://pypi.python.org/pypi/rematch-server
+   :alt: rematch-server PyPI
+   :target: https://pypi.python.org/pypi/rematch-server
