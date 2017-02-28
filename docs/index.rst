@@ -55,11 +55,20 @@ matching tools, there's no one tool that provides all of the following:
 Contribute and Get Support
 --------------------------
 
+Here are a few useful links to help you get in contact, find help and
+participate:
+
 - Source Code: https://github.com/nirizr/rematch
 - Issue Tracker: https://github.com/nirizr/rematch/issues
 - IRC channel: `ircs://freenode/#rematch <ircs://freenode/#rematch>`_ (or
   `insecure <irc:freenode/#rematch>`_)
 - Gitter Chat: https://gitter.im/rematch/rematch
+
+In particular, we're having trouble with implementing a stylish web interface
+for the rematch server, enriching this documentation and the testing framework.
+Engine suggestions (and obviously PRs) are extremely welcome, as well as
+feature requests. We tend to be permissive about approving PRs, but you can
+always raise an issue or discussion about a feature before implementing it.
 
 License
 -------
