@@ -46,8 +46,8 @@ To install using IDA's pip, simply run the following pip command:
    inside IDA's copy of python.
 
 If pip is not installed for IDA's version of python, it is still possible to
-to install the plugin with another copy of pip using pip's `--target` flag. To
-do this run the following pip command line with any instance of pip:
+install the plugin with another copy of pip using pip's `--target` flag. To do
+this run the following pip command line with any instance of pip:
 
 .. code-block:: console
 
