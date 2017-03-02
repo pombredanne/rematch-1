@@ -33,8 +33,8 @@ Installing the plugin using pip
 If pip is installed for IDA's version of python, using it is simplest
 installation method.
 
-.. note:: By default, pip is not installed for Windows installation of IDA, but
-   is more commonly found in Mac and Linux installations.
+.. note:: By default, pip is not installed for Windows installations of IDA,
+   but is more commonly found in Mac and Linux installations.
 
 To install using IDA's pip, simply run the following pip command:
 
