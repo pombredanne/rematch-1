@@ -53,6 +53,11 @@ this run the following pip command line with any instance of pip:
 
    $ pip install rematch-idaplugin --target="<Path to IDA's plugins directory>"
 
+.. warning:: Using the pip ``--target`` flag with a pip version installed by
+   Homebrew does not work because of a `known issue
+   <https://github.com/Homebrew/brew/issues/837>`_ with Homebrew. Homebrew OSX
+   users will have to use a different installation method.
+
 .. note:: IDA's plugins directory is located inside IDA's installation
    directory. For example if IDA is installed at:
 
