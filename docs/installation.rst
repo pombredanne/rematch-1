@@ -78,11 +78,13 @@ Installing the plugin manually
 ++++++++++++++++++++++++++++++
 
 If you don't have pip, or prefer not to use it, you can still manually install
-the plugin by simply extacting the contents of the `idaplugin directory
+the plugin by simply extracting the contents of the `idaplugin directory
 <https://github.com/nirizr/rematch/tree/master/idaplugin>`_ in the repository's
 root, to IDA's plugins directory.
 
 Simply download the package from `PyPI
 <https://pypi.python.org/pypi/rematch-idaplugin>`_ or `Github
-<https://github.com/nirizr/rematch>`_ and extract the idaplugin directory into
-IDA's plugins directory.
+<https://github.com/nirizr/rematch>`_ and extract the idaplugin directory
+contents into IDA's plugins directory, so that the file
+idaplugin/rematch_plugin.py is located in the plugins sub-directory in IDA's
+installation directory.
