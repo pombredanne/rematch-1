@@ -10,6 +10,9 @@ Glossary
      there's an advantage in applying annotations to matched :term:`Instances
      <Instance>`.
  
+   File
+    .. todo:: TODO
+
    Instance
      When used throughtout these docs, an Instance generally means a matchable
      object inside a binary file, or it's representation in any rematch
@@ -22,6 +25,9 @@ Glossary
      #. A stream of initialised data or structure.
      #. A stream of uninitialised data or structure.
   
+   Project
+      .. todo:: TODO
+
    Vector
       Raw data used to describe an :term:`Instance` in a way that facilitates and
       enables matching. Those are also occasionally called features in data-
