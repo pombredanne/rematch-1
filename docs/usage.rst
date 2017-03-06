@@ -38,17 +38,27 @@ Before uploading a file, starting a matching task or creating a project, a user
 must log in. If you do not have a user account on a rematch server, you'll need
 to contact the nearest rematch server admin, or set up your own rematch server.
 
-By clicking the "Login" command in the rematch toolbar or menu, a prompt dialog
-box will appear. You'll need to specify the server, username and password
-you'll work with, and click Login. Upon a successful login you'll be able to
-create projects, add files, request matches, etc.
+By clicking the "Login" command in the rematch toolbar or menu, the following
+dialog box will appear:
 
-.. todo: Add an image, two or a gif clip of a login.
+.. image:: /image/login_dialog.png
 
-File Creation and Binding
-+++++++++++++++++++++++++
+Into which you'll need to specify the server address, your username and it's
+password. You can optionally mark the "remember this password" checkbox to
+store the password for future logins. To login click the "Login" button and the
+login dialog will be closed.
 
+.. warning:: Passwords are stored in plaintext, so make sure to only mark this
+   checkbox on machines you trust. Rematch also supports token based login, and
+   after a successful login a token will be stored automatically (unless
+   diabled from the configuration dialog). For that reason, it is not requried
+   to store login details in most circumstances.
 
+Upon a successful login you'll be able to create projects, add files, request
+matches, etc.
+
+Projects, Files and Binding
++++++++++++++++++++++++++++
 
 Matching and Data Upload
 ++++++++++++++++++++++++
