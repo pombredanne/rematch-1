@@ -35,6 +35,16 @@ The IDA plugin is the interface to the rematch server. Most of the interaction
 a user has with rematch will actually be through the clients, dispatching work
 and uploading data to the server.
 
+Toolbar and Menu
+++++++++++++++++
+
+All rematch IDA plugin functionality is exposed through a set of toolbar and
+menu. Both have exactly the same functions and could be used interchangeably.
+
+.. image:: /images/toolbar.png
+
+.. image:: /images/menu.png
+
 Login
 +++++
 
@@ -45,7 +55,7 @@ to contact the nearest rematch server admin, or set up your own rematch server.
 By clicking the "Login" command in the rematch toolbar or menu, the following
 dialog box will appear:
 
-.. image:: /image/login_dialog.png
+.. image:: /images/login_dialog.png
 
 Into which you'll need to specify the server address, your username and it's
 password. You can optionally mark the "remember this password" checkbox to
@@ -63,6 +73,8 @@ matches, etc.
 
 Projects, Files and Binding
 +++++++++++++++++++++++++++
+
+.. todo:: Fill up the rest of idaplugin functionality
 
 As discussed in detail on the :ref:`Architecture` page, :term:`Files <File>`
 can be created under :term:`Projects <Project>`.
