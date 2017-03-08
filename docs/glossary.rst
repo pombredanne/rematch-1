@@ -1,6 +1,8 @@
 Glossary
 ========
 
+Sorted alphabetically
+
 .. glossary::
 
    Annotation
@@ -9,9 +11,12 @@ Glossary
      engineering process. Annotations help the reverse engineer and therefore
      there's an advantage in applying annotations to matched :term:`Instances
      <Instance>`.
+
+   Engine
+     .. todo:: TODO
  
    File
-    .. todo:: TODO
+     .. todo:: TODO
 
    Instance
      When used throughtout these docs, an Instance generally means a matchable
@@ -26,7 +31,7 @@ Glossary
      #. A stream of uninitialised data or structure.
   
    Project
-      .. todo:: TODO
+     .. todo:: TODO
 
    Vector
       Raw data used to describe an :term:`Instance` in a way that facilitates and

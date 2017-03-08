@@ -31,6 +31,10 @@ to login using the IDA plugin. Similarly, you can manage :term:`Projects
 IDA Plugin
 ----------
 
+The IDA plugin is the interface to the rematch server. Most of the interaction
+a user has with rematch will actually be through the clients, dispatching work
+and uploading data to the server.
+
 Login
 +++++
 
@@ -59,6 +63,9 @@ matches, etc.
 
 Projects, Files and Binding
 +++++++++++++++++++++++++++
+
+As discussed in detail on the :ref:`Architecture` page, :term:`Files <File>`
+can be created under :term:`Projects <Project>`.
 
 Matching and Data Upload
 ++++++++++++++++++++++++
