@@ -6,7 +6,7 @@
 Rematch
 =======
 
-Rematch, a simple binary diffing utility that just works.
+Rematch, a simple binary diffing framework that just works.
 
 .. note::
   At least, we hope it will be. Rematch is still a work in progress and is not
