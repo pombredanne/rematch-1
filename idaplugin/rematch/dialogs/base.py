@@ -267,6 +267,9 @@ class QFunctionSelect(QtWidgets.QWidget):
       self.set_func(f)
       self.changed.emit()
 
+  def get_result(self):
+    return self.func.startEA if self.func else None
+
 
 class QFunctionRangeSelect(QtWidgets.QWidget):
   def __init__(self, text_max_length=30, **kwargs):
@@ -295,3 +298,7 @@ class QFunctionRangeSelect(QtWidgets.QWidget):
     start_func = self.start.func
     self.start.set_func(self.end.func)
     self.end.set_func(start_func)
+
+  def get_result(self):
+    return [self.start.func.startEA if self.start.func else None,
+            self.start.func.endEA if self.start.func else None]
