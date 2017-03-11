@@ -105,8 +105,8 @@ class BaseDialog(QtWidgets.QDialog):
 
 class QItemSelect(QtWidgets.QComboBox):
   def __init__(self, item, name_field='name', id_field='id', allow_none=True,
-               exclude=None, default_id=None):
-    super(QItemSelect, self).__init__()
+               exclude=None, default_id=None, **kwargs):
+    super(QItemSelect, self).__init__(**kwargs)
     self.item = item
     self.name_field = name_field
     self.id_field = id_field
@@ -123,7 +123,7 @@ class QItemSelect(QtWidgets.QComboBox):
     if self.currentIndex() == -1:
       selected_id = self.default_id
     else:
-      self.currentData()
+      selected_id = self.currentData()
 
     # only clear after response is received
     self.clear()
