@@ -135,3 +135,9 @@ class MatchSerializer(serializers.ModelSerializer):
   class Meta:
     model = Match
     fields = ('from_instance', 'to_instance', 'task', 'type', 'score')
+
+
+class MatcherSerializer(serializers.Serializer):
+  match_type = serializers.ReadOnlyField()
+  vector_type = serializers.ReadOnlyField()
+  matcher_name = serializers.ReadOnlyField()
