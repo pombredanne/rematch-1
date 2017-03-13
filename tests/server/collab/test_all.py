@@ -214,3 +214,9 @@ def test_task(admin_user):
 
   from collab.tasks import match
   match(task.id)
+
+
+def test_matchers(admin_client):
+  response = admin_client.get('/collab/matches/matchers/',
+                              content_type="application/json")
+  assert_response(response, status.HTTP_200_OK, matchers_list)
