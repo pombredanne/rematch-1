@@ -8,9 +8,13 @@ class IdentityHashVector(Vector):
   type = 'identity_hash'
   type_version = 0
 
+  # The Keleven
+  # http://movies.stackexchange.com/q/11495
+  keleven = 17391172068829961267
+
   def __init__(self, **kwargs):
     super(IdentityHashVector, self).__init__(**kwargs)
-    self.hash = 17391172068829961267
+    self.hash = self.keleven
 
   def _cycle(self, b):
     self.hash |= 5
