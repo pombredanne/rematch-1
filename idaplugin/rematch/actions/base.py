@@ -7,20 +7,19 @@ import idc
 class Action(idaapi.action_handler_t):
   """Actions are objects registered to IDA's interface and added to the
   rematch menu and toolbar"""
-  dialog = None
-
   reject_handler = None
   finish_handler = None
   submit_handler = None
   response_handler = None
   exception_handler = None
 
-  def __init__(self):
+  def __init__(self, ui_class):
     self._icon = None
-    self.dlg = None
+    self.ui_class = ui_class
+    self.ui = None
 
   def __repr__(self):
-    return "<Action: {}>".format(self.get_id())
+    return "<Action: {}, {}>".format(self.get_id(), self.ui_class)
 
   def __del__(self):
     if self._icon:
@@ -81,23 +80,20 @@ class Action(idaapi.action_handler_t):
 
     return '/'.join(t)
 
-  @classmethod
-  def register(cls):
-    action = cls()
-    r = idaapi.register_action(action.get_desc())
+  def register(self):
+    r = idaapi.register_action(self.get_desc())
     if not r:
-      log('actions').warn("failed registering %s: %s", cls, r)
+      log('actions').warn("failed registering %s: %s", self, r)
       return
     idaapi.attach_action_to_menu(
-        action.get_action_path(),
-        action.get_id(),
+        self.get_action_path(),
+        self.get_id(),
         idaapi.SETMENU_APP)
     r = idaapi.attach_action_to_toolbar(
         "AnalysisToolBar",
-        action.get_id())
+        self.get_id())
     if not r:
-      log('actions').warn("registration of %s failed: %s", cls, r)
-    return action
+      log('actions').warn("registration of %s failed: %s", self, r)
 
   def update(self, ctx):
     return idaapi.AST_ENABLE if self.enabled(ctx) else idaapi.AST_DISABLE
@@ -107,25 +103,25 @@ class Action(idaapi.action_handler_t):
     if self.running():
       return
 
-    if callable(self.dialog):
-      self.dlg = self.dialog(reject_handler=self.reject_handler,
-                             submit_handler=self.submit_handler,
-                             response_handler=self.response_handler,
-                             exception_handler=self.exception_handler)
+    if callable(self.ui_class):
+      self.ui = self.ui_class(reject_handler=self.reject_handler,
+                              submit_handler=self.submit_handler,
+                              response_handler=self.response_handler,
+                              exception_handler=self.exception_handler)
       if self.finish_handler:
-        self.dlg.finished.connect(self.finish_handler)
-      self.dlg.finished.connect(self.close_dialog)
-      self.dlg.finished.connect(self.force_update)
-      self.dlg.show()
+        self.ui.finished.connect(self.finish_handler)
+      self.ui.finished.connect(self.close_dialog)
+      self.ui.finished.connect(self.force_update)
+      self.ui.show()
     else:
       log('actions').warn("%s: no activation", self.__class__)
 
   def running(self):
-    return self.dlg is not None
+    return self.ui is not None
 
   def close_dialog(self):
-    del self.dlg
-    self.dlg = None
+    del self.ui
+    self.ui = None
 
   @staticmethod
   def force_update():
