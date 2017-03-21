@@ -17,6 +17,14 @@ admin console.
   confidential data will be kept on servers only accessible to those with
   permission to access said data. See Privacy section for more details.
 
+Installing Rematch server docker container
+++++++++++++++++++++++++++++++++++++++++++
+
+We provide a docker container with Rematch server installed and configured with
+nginx, mysql, rabbitmq and celery micro components. This makes server
+deployment a lot easier however a docker installation and roughly 1 GB of free
+space is required.
+
 Installing the Rematch IDA Plugin
 ---------------------------------
 
