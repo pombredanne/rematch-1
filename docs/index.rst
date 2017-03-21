@@ -60,9 +60,8 @@ participate:
 
 - Source Code: https://github.com/nirizr/rematch
 - Issue Tracker: https://github.com/nirizr/rematch/issues
-- IRC channel: `ircs://freenode/#rematch <ircs://freenode/#rematch>`_ (or
-  `insecure <irc:freenode/#rematch>`_)
-- Gitter Chat: https://gitter.im/rematch/rematch
+- IRC channel: ircs://freenode/#rematch
+- Telegram Chat: https://t.me/joinchat/AAAAAAzNqvnjC03QYpv_iQ
 
 In particular, we're having trouble with implementing a stylish web interface
 for the rematch server, enriching this documentation and the testing framework.
