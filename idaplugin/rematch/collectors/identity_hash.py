@@ -26,7 +26,8 @@ class IdentityHashVector(Vector):
   def _data(self):
     for ea in idautils.FuncItems(self.offset):
       self._cycle(idc.Byte(ea))
-      if idc.isRef(idc.GetFlags(ea)):
+      # skip additional bytes of any instruction that contains an offset in it
+      if idautils.CodeRefsFrom(ea, True) or idautils.DataRefsFrom(ea):
         continue
       for i in range(ea + 1, ea + idc.ItemSize(ea)):
         self._cycle(idc.Byte(i))
