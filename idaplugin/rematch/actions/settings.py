@@ -4,7 +4,7 @@ from . import base
 from .. import config
 
 
-class SettingsAction(base.Action):
+class SettingsAction(base.IDAAction):
   name = "&Settings"
 
   @staticmethod

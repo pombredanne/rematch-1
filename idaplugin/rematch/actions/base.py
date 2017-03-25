@@ -4,9 +4,7 @@ import idaapi
 import idc
 
 
-class Action(idaapi.action_handler_t):
-  """Actions are objects registered to IDA's interface and added to the
-  rematch menu and toolbar"""
+class Action():
   reject_handler = None
   finish_handler = None
   submit_handler = None
@@ -14,14 +12,29 @@ class Action(idaapi.action_handler_t):
   exception_handler = None
 
   def __init__(self, ui_class):
-    self._icon = None
     self.ui_class = ui_class
     self.ui = None
+
+  def __repr__(self):
+    return "<Action: {}>".format(self.ui_class)
+
+  def running(self):
+    return self.ui is not None
+
+
+class IDAAction(idaapi.action_handler_t, Action):
+  """Actions are objects registered to IDA's interface and added to the
+  rematch menu and toolbar"""
+
+  def __init__(self, *args, **kwargs):
+    super(IDAAction, self).__init__(*args, **kwargs)
+    self._icon = None
 
   def __repr__(self):
     return "<Action: {}, {}>".format(self.get_id(), self.ui_class)
 
   def __del__(self):
+    super(IDAAction, self).__del__()
     if self._icon:
       idaapi.free_custom_icon(self._icon)
 
@@ -116,9 +129,6 @@ class Action(idaapi.action_handler_t):
     else:
       log('actions').warn("%s: no activation", self.__class__)
 
-  def running(self):
-    return self.ui is not None
-
   def close_dialog(self):
     del self.ui
     self.ui = None
@@ -132,7 +142,7 @@ class Action(idaapi.action_handler_t):
     idaapi.request_refresh(iwid_all)
 
 
-class IdbAction(Action):
+class IdbAction(IDAAction):
   """This action is only available when an idb file is loaded"""
   @staticmethod
   def enabled(ctx):
@@ -140,7 +150,7 @@ class IdbAction(Action):
     return bool(idc.GetIdbPath())
 
 
-class UnauthAction(Action):
+class UnauthAction(IDAAction):
   """This action is only available when a user is logged off"""
   @staticmethod
   def enabled(ctx):
@@ -148,7 +158,7 @@ class UnauthAction(Action):
     return not bool(user['is_authenticated'])
 
 
-class AuthAction(Action):
+class AuthAction(IDAAction):
   """This action is only available when a user is logged in"""
   @staticmethod
   def enabled(ctx):
