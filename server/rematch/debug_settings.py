@@ -1,8 +1,5 @@
 from settings import *
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qvc7t@rd5#1l-n_%%&+_fu+-lu#sp2oonf9mto%bn-1#i7$(tu'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

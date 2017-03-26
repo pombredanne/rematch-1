@@ -20,6 +20,24 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 
+# SECRET_KEY must be kept secret, so it is not included in the repository for
+# production servers and instead auto-generated and saved to disk on first run
+SECRET_KEY_PATH = os.path.join(BASE_DIR, '.rematch_secret.key')
+if not os.path.isfile(SECRET_KEY_PATH):
+  fd = os.open(SECRET_KEY_PATH, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+  try:
+    with os.fdopen(fd, 'w') as fh:
+      import django.core.management.utils
+      fh.write(django.core.management.utils.get_random_secret_key())
+  except Exception:
+    os.unlink(SECRET_KEY_PATH)
+    raise
+
+with open(SECRET_KEY_PATH, 'r') as fh:
+  SECRET_KEY = fh.read()
+assert len(SECRET_KEY) > 20
+
+
 # As of django 1.10, allowed hosts are validated in debug as well,
 # this disables that and makes sure all hosts are acceptible when
 # running in debug mode. for more details see
