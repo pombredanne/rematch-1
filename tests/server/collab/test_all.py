@@ -10,6 +10,12 @@ import random
 import json
 
 
+try:
+  strtypes = (str, unicode)
+except:
+  strtypes = str
+
+
 @pytest.fixture
 def api_client():
   return test.APIClient()
@@ -104,30 +110,42 @@ def setup_model(model_name, user):
 
 
 def assert_eq(a, b):
+  import inspect, datetime
+  print(a, b)
   if isinstance(a, list) and isinstance(b, list):
     assert len(a) == len(b)
     for a_item, b_item in zip(a, b):
       assert_eq(a_item, b_item)
-  if isinstance(a, models.Model) and isinstance(b, dict):
+  elif isinstance(a, dict) and isinstance(b, dict):
     for k in b:
-      d_value = b.__getitem__(k)
-      o_value = a.__getattribute__(k)
-      d_type = type(d_value)
-      o_type = type(o_value)
-      if d_type == o_type:
-        assert d_value == o_value
-      else:
-        print("Skipped matching {k}: {d_value}({d_type}) ?? "
-              "{o_value}({o_type})".format(k=k, d_value=d_value,
-                                           d_type=d_type, o_value=o_value,
-                                           o_type=o_type))
+      assert a[k] == b[k]
+  elif type(a) == type(b):
+    assert a == b
+  elif isinstance(b, dict) and (isinstance(a, models.Model) or
+                                inspect.isclass(a)):
+    assert_eq(b, a)
+  elif isinstance(a, dict) and (isinstance(b, models.Model) or
+                                inspect.isclass(b)):
+    for k in a:
+      b_value = getattr(b, k)
+      a_value = a.__getitem__(k)
+      assert_eq(a_value, b_value)
+  #elif isinstance(b, datetime.datetime):
+  #  assert_eq(a, b.isoformat().replace('+00:00', 'Z'))
+  elif isinstance(b, models.Model):
+    assert_eq(a, b.id)
+  else:
+    print(type(a), type(b))
+    assert a == b
+    #raise Exception("Cannot assert equality between types {} and {}"
+    #                .format(type(a), type(b)))
 
 
 def assert_response(response, status, data=None):
   print(response.content)
   assert response.status_code == status
   if isinstance(data, (list, dict)):
-    assert_eq(response.json(), data)
+    assert_eq(response.data, data)
   elif data:
     assert_eq(response.content, data)
 
