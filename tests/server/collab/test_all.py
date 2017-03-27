@@ -8,11 +8,13 @@ from collab.matchers import matchers_list
 
 import random
 import json
+import inspect
+import datetime
 
 
 try:
   strtypes = (str, unicode)
-except:
+except NameError:
   strtypes = str
 
 
@@ -63,8 +65,7 @@ collab_model_reqs = {'projects': {},
                                'source_file_version': 'file_versions'},
                      'instances': {'file_version': 'file_versions'},
                      'vectors': {'instance': 'instances',
-                                 'file_version': 'file_versions',
-                                 'file': 'files'}}
+                                 'file_version': 'file_versions'}}
 
 
 def resolve_reqs(model_name, user):
@@ -110,7 +111,6 @@ def setup_model(model_name, user):
 
 
 def assert_eq(a, b):
-  import inspect, datetime
   print(a, b)
   if isinstance(a, list) and isinstance(b, list):
     assert len(a) == len(b)
@@ -118,27 +118,33 @@ def assert_eq(a, b):
       assert_eq(a_item, b_item)
   elif isinstance(a, dict) and isinstance(b, dict):
     for k in b:
-      assert a[k] == b[k]
-  elif type(a) == type(b):
-    assert a == b
+      assert_eq(a[k], b[k])
+  elif isinstance(a, datetime.datetime):
+    assert_eq(a.replace(microsecond=0, tzinfo=None).isoformat(), b)
+  elif isinstance(b, datetime.datetime):
+    assert_eq(a, b.replace(microsecond=0, tzinfo=None).isoformat())
   elif isinstance(b, dict) and (isinstance(a, models.Model) or
                                 inspect.isclass(a)):
     assert_eq(b, a)
   elif isinstance(a, dict) and (isinstance(b, models.Model) or
                                 inspect.isclass(b)):
     for k in a:
-      b_value = getattr(b, k)
+      # TODO: serializer-added values cannot be validated, so we'll have to
+      # ignore any attribute that does not exist in Model object
+      if not hasattr(b, k):
+        print("Ignoring missing model parameter: {} in {}".format(k, b))
+        continue
       a_value = a.__getitem__(k)
+      b_value = getattr(b, k)
       assert_eq(a_value, b_value)
-  #elif isinstance(b, datetime.datetime):
-  #  assert_eq(a, b.isoformat().replace('+00:00', 'Z'))
-  elif isinstance(b, models.Model):
+  elif isinstance(a, (int, long)) and isinstance(b, models.Model):
     assert_eq(a, b.id)
+  elif isinstance(a, strtypes) and isinstance(b, models.Model):
+    assert_eq(a, b.username)
+  elif b.__class__.__name__ == 'RelatedManager':
+    assert_eq(a, list(b.all()))
   else:
-    print(type(a), type(b))
     assert a == b
-    #raise Exception("Cannot assert equality between types {} and {}"
-    #                .format(type(a), type(b)))
 
 
 def assert_response(response, status, data=None):
