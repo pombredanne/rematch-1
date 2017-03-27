@@ -9,13 +9,15 @@ from collab.matchers import matchers_list
 import random
 import json
 import inspect
-import datetime
+from dateutil.parser import parse as parse_date
 
 
 try:
   strtypes = (str, unicode)
+  inttypes = (int, long)
 except NameError:
   strtypes = str
+  inttypes = int
 
 
 @pytest.fixture
@@ -110,7 +112,20 @@ def setup_model(model_name, user):
   return model_dict
 
 
+def simplify_object(obj):
+  try:
+    obj = parse_date(obj)
+  except (AttributeError, ValueError, TypeError):
+    pass
+  try:
+    obj = obj.replace(microsecond=0, tzinfo=None).isoformat()
+  except (AttributeError, TypeError):
+    pass
+  return obj
+
+
 def assert_eq(a, b):
+  a, b = simplify_object(a), simplify_object(b)
   print(a, b)
   if isinstance(a, list) and isinstance(b, list):
     assert len(a) == len(b)
@@ -119,10 +134,6 @@ def assert_eq(a, b):
   elif isinstance(a, dict) and isinstance(b, dict):
     for k in b:
       assert_eq(a[k], b[k])
-  elif isinstance(a, datetime.datetime):
-    assert_eq(a.replace(microsecond=0, tzinfo=None).isoformat(), b)
-  elif isinstance(b, datetime.datetime):
-    assert_eq(a, b.replace(microsecond=0, tzinfo=None).isoformat())
   elif isinstance(b, dict) and (isinstance(a, models.Model) or
                                 inspect.isclass(a)):
     assert_eq(b, a)
@@ -137,7 +148,7 @@ def assert_eq(a, b):
       a_value = a.__getitem__(k)
       b_value = getattr(b, k)
       assert_eq(a_value, b_value)
-  elif isinstance(a, (int, long)) and isinstance(b, models.Model):
+  elif isinstance(a, inttypes) and isinstance(b, models.Model):
     assert_eq(a, b.id)
   elif isinstance(a, strtypes) and isinstance(b, models.Model):
     assert_eq(a, b.username)
