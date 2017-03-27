@@ -1,4 +1,4 @@
-from settings import *
+from rematch.settings.base import *  # NOQA: F401, F403
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
