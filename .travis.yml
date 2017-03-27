@@ -18,7 +18,7 @@ matrix:
       env: PROJECT=idaplugin
 
 branches:
-  only: 
+  only:
     - master
 
 # Handle git submodules ourselves to replace ssh login with https login
@@ -49,9 +49,8 @@ install:
   - pip install pytest-cov coveralls
 
 before_script:
-  - if [ ${PROJECT} = "server" ]; then
-      mysql -e 'SHOW VARIABLES LIKE "%version%";' ;
-    fi;
+  - if [ ${PROJECT} = "server" ]; then mysql -e 'SHOW VARIABLES LIKE "%version%";' ; fi;
+  - if [ ${PROJECT} = "server" ]; then export DJANGO_SETTINGS_MODULE='rematch.settings.debug' ; fi;
 
 script:
   - flake8 ./${PROJECT} --show-source --statistics
