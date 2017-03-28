@@ -162,7 +162,10 @@ def assert_response(response, status, data=None):
   print(response.content)
   assert response.status_code == status
   if isinstance(data, (list, dict)):
-    assert_eq(response.data, data)
+    if 'results' in response.data:
+      assert_eq(response.data['results'], data)
+    else:
+      assert_eq(response.data, data)
   elif data:
     assert_eq(response.content, data)
 
@@ -237,13 +240,15 @@ def test_file_fileversion(admin_client, admin_user):
   assert_response(response, status.HTTP_200_OK, obj)
 
 
+@pytest.mark.parametrize('limit', [None, 10])
 @pytest.mark.parametrize('resource', ['locals', 'remotes', 'matches'])
-def test_task_resource_empty(resource, admin_client, admin_user):
+def test_task_resource_empty(resource, limit, admin_client, admin_user):
   task = create_model('tasks', admin_user)
   task.save()
 
+  data = {'limit': limit} if limit else {}
   response = admin_client.get('/collab/tasks/{}/{}/'.format(task.id, resource),
-                              content_type="application/json")
+                              data=data, content_type="application/json")
   assert_response(response, status.HTTP_200_OK, [])
 
 
