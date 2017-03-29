@@ -131,14 +131,17 @@ class IDAAction(Action, ida_kernwin.action_handler_t):
       if self.finish_handler:
         self.ui.finished.connect(self.finish_handler)
       self.ui.finished.connect(self.close_dialog)
-      self.ui.finished.connect(self.force_update)
+      self.ui.canceled.connect(self.close_dialog)
       self.ui.show()
     else:
       log('actions').warn("%s: no activation", self.__class__)
 
   def close_dialog(self):
+    log('action_base').info("Action finished: {}".format(self))
     del self.ui
     self.ui = None
+
+    self.force_update()
 
   @staticmethod
   def force_update():

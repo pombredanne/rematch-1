@@ -69,7 +69,7 @@ class SearchTreeWidget(QtWidgets.QTreeWidget):
       it += 1
 
 
-class MatchResultDialog(base.BaseDialog):
+class ReviewDialog(base.BaseDialog):
   MATCH_NAME_COLUMN = 0
   CHECKBOX_COLUMN = 0
   MATCH_SCORE_COLUMN = 1
@@ -83,7 +83,7 @@ class MatchResultDialog(base.BaseDialog):
   def __init__(self, task_id, *args, **kwargs):
     if 'model' not in kwargs:
       kwargs['modal'] = False
-    super(MatchResultDialog, self).__init__(*args, **kwargs)
+    super(MatchtDialog, self).__init__(*args, **kwargs)
 
     self.task_id = task_id
     self.locals = {}
@@ -170,7 +170,7 @@ class MatchResultDialog(base.BaseDialog):
     self.finalize_matches()
     self.populate_tree()
     self.set_checks()
-    super(MatchResultDialog, self).show(*args, **kwargs)
+    super(ReviewDialog, self).show(*args, **kwargs)
     self.graph_dialog.Show()
 
   def get_obj(self, obj_id):
