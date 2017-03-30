@@ -95,3 +95,4 @@ server/db.sqlite3
 .DS_Store
 Thumbs.db
 *.un~
+*.swp
