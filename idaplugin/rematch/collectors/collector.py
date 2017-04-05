@@ -8,16 +8,7 @@ except NameError:
 
 
 class Collector(object):
-  def __init__(self, offset, instance_id=None):
-    self.instance_id = instance_id
-    self.offset = offset
-    self.data = self.serialized_data()
-
-  @staticmethod
-  def include():
-    return True
-
-  def serialized_data(self):
+  def data(self):
     data = self._data()
     if not isinstance(data, strtypes):
       data = json.dumps(data)
