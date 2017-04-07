@@ -1,6 +1,6 @@
 from idasix import QtCore, QtWidgets
 
-from idasix import ida_idaapi
+import ida_idaapi
 
 from . import config, user
 from . import actions

@@ -1,6 +1,6 @@
 from .. import user, log, netnode, utils
 
-from ..idasix import ida_kernwin
+import ida_kernwin
 import idc
 
 

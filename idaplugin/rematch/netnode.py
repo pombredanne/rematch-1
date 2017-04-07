@@ -1,4 +1,4 @@
-from idasix import ida_netnode
+import ida_netnode
 
 
 class NetNode(object):
