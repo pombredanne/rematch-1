@@ -1,3 +1,4 @@
 pytest
 pytest-idapro
 pytest-qt
+pytest-xvfb
