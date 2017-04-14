@@ -1,8 +1,5 @@
-from idaplugin import plugin_rematch
-
-
-def test_plugin_creation(ida_app):
-  plugin = plugin_rematch.PLUGIN_ENTRY()
+def test_plugin_creation(idapro_plugin_entry, ida_app):
+  plugin = idapro_plugin_entry()
 
   plugin.init()
 
