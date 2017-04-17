@@ -10,3 +10,17 @@ def test_plugin_creation(idapro_plugin_entry, idapro_app):
   plugin.run()
 
   plugin.term()
+
+
+def test_action_creation(idapro_action_entry, idapro_app):
+  del idapro_app
+
+  action = idapro_action_entry(None)
+
+  action.register()
+
+  ctx = None
+
+  action.update(ctx)
+
+  action.activate(ctx)
