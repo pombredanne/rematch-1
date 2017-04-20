@@ -17,10 +17,12 @@ def test_action_creation(idapro_action_entry, idapro_app):
 
   action = idapro_action_entry(None)
 
-  action.register()
+  if hasattr(idapro_action_entry, 'name'):
+    action.register()
 
   ctx = None
 
-  action.update(ctx)
+  if hasattr(idapro_action_entry, 'enabled'):
+    action.update(ctx)
 
   action.activate(ctx)
