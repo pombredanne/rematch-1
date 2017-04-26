@@ -26,6 +26,6 @@ class AssemblyAnnotation(annotation.Annotation):
     return nodes
 
   @classmethod
-  def apply(self, offset, data):
+  def apply(cls, offset, data):
     del offset
     del data

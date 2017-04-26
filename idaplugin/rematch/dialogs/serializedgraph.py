@@ -7,14 +7,14 @@ class SerializedGraphDialog(ida_graph.GraphViewer):
     super(SerializedGraphDialog, self).__init__(title, *args, **kwargs)
     self.nodes = {}
 
-  def SetNodes(self, nodes):
+  def SetNodes(self, nodes):  # noqa: N802
     self.nodes = nodes
     self.Refresh()
 
-  def OnGetText(self, node_id):
+  def OnGetText(self, node_id):  # noqa: N802
     return self[node_id]
 
-  def OnRefresh(self):
+  def OnRefresh(self):  # noqa: N802
     self.Clear()
 
     # create nodes
