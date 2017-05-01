@@ -1,3 +1,6 @@
+import idaplugin
+
+
 def test_plugin_creation(idapro_plugin_entry, idapro_app):
   del idapro_app
 
@@ -26,3 +29,10 @@ def test_action_creation(idapro_action_entry, idapro_app):
     action.update(ctx)
 
   action.activate(ctx)
+
+
+def test_update(idapro_app):
+  del idapro_app
+
+  idaplugin.rematch.update.check_update()
+  print("Done")
