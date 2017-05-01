@@ -1,4 +1,5 @@
 import idaplugin
+import time
 
 
 def test_plugin_creation(idapro_plugin_entry, idapro_app):
@@ -35,4 +36,5 @@ def test_update(idapro_app):
   del idapro_app
 
   idaplugin.rematch.update.check_update()
+  time.sleep(1)
   print("Done")
